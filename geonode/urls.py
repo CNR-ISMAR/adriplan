@@ -23,7 +23,7 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf.urls.static import static
 from geonode.sitemap import LayerSitemap, MapSitemap
 from django.views.generic import TemplateView
-from django.contrib import admin
+from django.contrib.gis import admin
 
 import geonode.proxy.urls
 
@@ -47,6 +47,13 @@ sitemaps = {
 }
 
 urlpatterns = patterns('',
+                       # adriplan
+                       url(r'^about_services/$', TemplateView.as_view(template_name='about_services.html'), name='about_services'),
+                       (r'^grappelli/', include('grappelli.urls')), # grappelli URLS
+                       url(r'^admin/', include(admin.site.urls)),
+                       (r'^msp/', include('msptools.urls')),
+                       (r'^adminactions/', include('adminactions.urls')),
+
 
                        # Static pages
                        url(r'^/?$', TemplateView.as_view(template_name='index.html'), name='home'),
