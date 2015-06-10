@@ -1,1 +1,22 @@
 {% extends "base.html" %}
+{% load i18n %}
+
+{% block head %}
+
+{{ block.super }}
+
+<link rel="icon" href="/static/geonode/img/favicon.ico" />
+
+{% endblock %}
+
+  {% block extra_tab %}
+  <li id="nav_services">
+    <a href="{% url "about_services" %}">{% trans "Services" %}</a>
+  </li>
+  {% if request.user.is_superuser %}
+  <li id="nav_msp">
+    <a href="{% url "msp_browse" %}">{% trans "MSP" %}</a>
+  </li>
+  {% endif %}
+
+  {% endblock %}
