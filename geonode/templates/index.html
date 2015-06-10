@@ -12,9 +12,23 @@
   {% block hero %}
   <div class="jumbotron">
     <div class="container">
-      <h1>{% trans "Welcome" %}</h1>
-      <p>{% blocktrans %}GeoNode is an open source platform for sharing geospatial data and maps.{% endblocktrans %}</p>
-      <p>{% blocktrans %}If you have any questions about the software or service, join our <a href="http://lists.osgeo.org/cgi-bin/mailman/listinfo/geonode-users">mailing list</a>.{% endblocktrans %}</p>
+      <h1>{% trans "ADRIPLAN Data Portal" %}</h1>
+        <!--img src='{{ STATIC_URL }}adriplan/img/tempesta.jpg' class="img-thumbnail"-->
+        <br/>
+        <br/>
+        <p>{% blocktrans %} ADRIPLAN is a project for Marine Spatial Planning.{% endblocktrans %}</p>
+        <!--p>
+           This geoportal is proposed to implement a system for data and metadata
+           management (scientific and geographical, textual documents,
+            tables, etc...). </p>
+        <p>It can help users (stakeholders,
+           administrators, scientists) to consult and exploit the
+           scientific information provided by the ADRIPLAN partners.
+        </p-->
+        <p>
+            For more information about this project, visit the
+            project's web page: <a href="http://adriplan.eu//">http://adriplan.eu/</a>.
+        </p>
       <span>{% trans 'Need help?' %} <a href="http://docs.geonode.org/en/latest/tutorials/users/quickstart/index.html">{% trans 'Getting Started' %}</a></span>
     </div>
   </div>
@@ -28,11 +42,11 @@
       <div class="col-md-4">
         <p><a href="{% url "layer_browse" %}"><i class="fa fa-square-o fa-5x rotate-45"></i></a></p>
         <h2><a href="{% url "layer_browse" %}">{{ facets.layer|default:_("No") }} {% blocktrans count counter=facets.layer %}Layer{% plural %}Layers{% endblocktrans %}</a></h2>
-        <p>{% trans "Click to search for geospatial data published by other users, organizations and public sources. Download data in standard formats." %}</p> 
+        <p>{% trans "Click to search for geospatial data published by other users, organizations and public sources. Download data in standard formats." %}</p>
         {% if user.is_authenticated %}
         <p class="text-center"><a class="btn btn-default" href="{% url "layer_upload" %}" role="button">{% trans "Add layers" %} &raquo;</a></p>
         {% else %}
-        <p class="text-center"><a class="btn btn-default" href="{% url "layer_browse" %}" role="button">{% trans "Explore layers" %} &raquo;</a></p>        
+        <p class="text-center"><a class="btn btn-default" href="{% url "layer_browse" %}" role="button">{% trans "Explore layers" %} &raquo;</a></p>
         {% endif %}
       </div>
       <div class="col-md-4">
@@ -62,7 +76,7 @@
   </div>
   {% endverbatim %}
   {% endblock %}
-  
+
 {% endblock %}
 
 {% block extra_script %}
@@ -72,14 +86,14 @@
   <script type="text/javascript">
     FEATURED_URL = '{% url 'api_dispatch_list' api_name='api' resource_name='featured' %}'
     'use strict';
-    (function(){  
+    (function(){
       var module = angular.module('featured', []);
       module.run(function($http, $rootScope){
         $http.get(FEATURED_URL).success(function(data){
           $rootScope.featured = data.objects;
         });
       });
-    })(); 
+    })();
   </script>
 
 {% endblock extra_script %}
