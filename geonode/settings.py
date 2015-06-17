@@ -288,6 +288,7 @@ INSTALLED_APPS = (
     'msptools.base',
     'msptools.conflict_score',
     'msptools.cumulative_impact',
+    'request',
 
     # Third party apps
 
@@ -406,6 +407,7 @@ MIDDLEWARE_CLASSES = (
     # It sets temporary the involved layers as public before restoring the permissions.
     # Beware that for few seconds the involved layers are public there could be risks.
     # 'geonode.middleware.PrintProxyMiddleware',
+    'request.middleware.RequestMiddleware',
 )
 
 
