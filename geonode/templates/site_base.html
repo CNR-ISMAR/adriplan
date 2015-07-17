@@ -6,10 +6,18 @@
 {{ block.super }}
 
 <link rel="icon" href="/static/geonode/img/favicon.ico" />
+<!-- Begin Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
+<script type="text/javascript">
+    window.cookieconsent_options = {"message":"This website uses cookies to ensure you get the best experience on our website","dismiss":"Got it!","learnMore":"More info","link":null,"theme":"dark-top"};
+</script>
+
+<script type="text/javascript" src="//s3.amazonaws.com/cc.silktide.com/cookieconsent.latest.min.js"></script>
+<!-- End Cookie Consent plugin -->
 
 {% endblock %}
 
   {% block extra_tab %}
+
   <li id="nav_services">
     <a href="{% url "about_services" %}">{% trans "Services" %}</a>
   </li>
@@ -18,5 +26,8 @@
     <a href="{% url "msp_browse" %}">{% trans "MSP" %}</a>
   </li>
   {% endif %}
+   <li id="nav_contacts">
+    <a href="{% url "contacts" %}">{% trans "Contacts" %}</a>
+  </li>
 
   {% endblock %}
