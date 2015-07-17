@@ -50,10 +50,13 @@ urlpatterns = patterns('',
                        # adriplan
                        url(r'^about_services/$', TemplateView.as_view(template_name='about_services.html'), name='about_services'),
                        (r'^grappelli/', include('grappelli.urls')), # grappelli URLS
+
+                       url(r'^contacts/$', TemplateView.as_view(template_name='contacts.html'), name='contacts'),
+                       (r'^grappelli/', include('grappelli.urls')), # grappelli URLS
+
                        url(r'^admin/', include(admin.site.urls)),
                        (r'^msp/', include('msptools.urls')),
                        (r'^adminactions/', include('adminactions.urls')),
-
 
                        # Static pages
                        url(r'^/?$', TemplateView.as_view(template_name='index.html'), name='home'),
@@ -137,3 +140,8 @@ urlpatterns += patterns('',
                         (r'^featured/(?P<site>[A-Za-z0-9_\-]+)/$', 'geonode.maps.views.featured_map'),
                         (r'^featured/(?P<site>[A-Za-z0-9_\-]+)/info$', 'geonode.maps.views.featured_map_info'),
                         )
+
+if 'geonode.atlas' in settings.INSTALLED_APPS:
+    urlpatterns += patterns('',
+                            (r'^atlas/', include('geonode.atlas.urls')),
+                            )
