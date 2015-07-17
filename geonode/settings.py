@@ -230,6 +230,7 @@ GEONODE_APPS = (
     'geonode.services',
 
     # GeoNode Contrib Apps
+    'geonode.atlas',
 
     # 'geonode.contrib.dynamic',
 
@@ -295,7 +296,7 @@ INSTALLED_APPS = (
     'avatar',
     'dialogos',
     'agon_ratings',
-    #'notification',
+    'notification',
     'announcements',
     'actstream',
     'user_messages',

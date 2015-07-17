@@ -93,7 +93,7 @@
         {% endif_has_tag %}
       </ul>
       <ul class="list-group">
-        {% if USE_NOTIFICATIONS %}
+        {% if USE_NOTIFICATIONS and user.is_superuser %}
         <li class="list-group-item"><a href="{% url "notification_notice_settings" %}"><i class="fa fa-bell"></i> {% trans "Notifications" %}</a></li>
         {% endif %}
         {% if perms.announcements.can_manage %}
