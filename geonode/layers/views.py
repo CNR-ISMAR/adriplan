@@ -23,6 +23,7 @@ import sys
 import logging
 import shutil
 import traceback
+from guardian.shortcuts import get_perms
 
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -220,6 +221,7 @@ def layer_detail(request, layername, template='layers/layer_detail.html'):
         layername,
         'base.view_resourcebase',
         _PERMISSION_MSG_VIEW)
+
     # assert False, str(layer_bbox)
     config = layer.attribute_config()
 
@@ -269,6 +271,7 @@ def layer_detail(request, layername, template='layers/layer_detail.html'):
 
     context_dict = {
         "resource": layer,
+        'perms_list': get_perms(request.user, layer.get_self_resource()),
         "permissions_json": _perms_info_json(layer),
         "documents": get_related_documents(layer),
         "metadata": metadata,
@@ -385,6 +388,13 @@ def layer_metadata(request, layername, template='layers/layer_metadata.html'):
             Layer.objects.filter(id=the_layer.id).update(
                 category=new_category
                 )
+
+            if getattr(settings, 'SLACK_ENABLED', False):
+                try:
+                    from geonode.contrib.slack.utils import build_slack_message_layer, send_slack_messages
+                    send_slack_messages(build_slack_message_layer("layer_edit", the_layer))
+                except:
+                    print "Could not send slack message."
 
             return HttpResponseRedirect(
                 reverse(

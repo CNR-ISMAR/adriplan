@@ -1,0 +1,27 @@
+{% extends "site_base.html" %}
+
+{% load i18n %}
+{% block title %} {% trans "Contacts" %} — {{ block.super }}{% endblock %}
+
+{% block body_outer %}
+<div class="page-header">
+  <h2>{% trans "Contacts" %}</h2>
+</div>
+<p class="lead">The<strong> ADRIPLAN Data Portal</strong> is the access point for all data collected in the <a target="_blank"  href="http://adriplan.eu/">ADRIPLAN project</a>. It is a joint effort by all partners, coordinated by <a target="_blank"  href="http://www.ismar.cnr.it/">CNR-ISMAR</a>  </p>
+
+<div> For general questions please contact the <a target="_blank"  href="http://adriplan.eu/index.php/project/work-packages/wp2-data-information-management">WP2 - Data and Information Management</a>  Lead contact person:
+ <address>
+   <strong>Alessandro Sarretta</strong><br>
+    Email: alessandro.sarretta@ismar.cnr.it<br>
+ </address>
+</div>
+<div> For technical questions contact the Data Portal Administrator:
+ <address>
+   <strong>Stefano Menegon</strong><br>
+   Email: stefano.menegon@ve.ismar.cnr.it<br>
+ </address>
+</div>
+
+
+
+{% endblock %}

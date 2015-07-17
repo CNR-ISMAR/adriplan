@@ -21,7 +21,7 @@
 # Django settings for the GeoNode project.
 import os
 from kombu import Queue
-from celery_app import app  # flake8: noqa
+from geonode.celery_app import app  # flake8: noqa
 
 #
 # General Django development settings
@@ -213,8 +213,6 @@ MAX_DOCUMENT_SIZE = 2  # MB
 # DOCUMENT_MIMETYPE_MAP = {}
 
 GEONODE_APPS = (
-
-
     # GeoNode internal apps
     'geonode.people',
     'geonode.base',
@@ -229,11 +227,6 @@ GEONODE_APPS = (
     'geonode.groups',
     'geonode.services',
 
-    # GeoNode Contrib Apps
-    'geonode.atlas',
-
-    # 'geonode.contrib.dynamic',
-
     # GeoServer Apps
     # Geoserver needs to come last because
     # it's signals may rely on other apps' signals.
@@ -241,6 +234,21 @@ GEONODE_APPS = (
     'geonode.upload',
     'geonode.tasks'
 )
+
+GEONODE_CONTRIB_APPS = (
+    # GeoNode Contrib Apps
+    'geonode.contrib.dynamic',
+    'geonode.contrib.exif',
+    'geonode.contrib.favorite',
+    'geonode.contrib.geogig',
+    'geonode.contrib.geosites',
+    'geonode.contrib.nlp',
+    'geonode.contrib.slack',
+    'geonode.atlas'
+)
+
+# Uncomment the following line to enable contrib apps
+# GEONODE_APPS = GEONODE_APPS + GEONODE_CONTRIB_APPS
 
 INSTALLED_APPS = (
 
@@ -543,8 +551,8 @@ CATALOGUE = {
         # 'URL': 'http://localhost:8080/deegree-csw-demo-3.0.4/services',
 
         # login credentials (for GeoNetwork)
-        'USER': 'admin',
-        'PASSWORD': 'admin',
+        # 'USER': 'admin',
+        # 'PASSWORD': 'admin',
     }
 }
 
@@ -653,7 +661,7 @@ SOCIAL_ORIGINS = [{
     "css_class":"fb"
 }, {
     "label":"Twitter",
-    "url":"https://twitter.com/share?url={url}",
+    "url":"https://twitter.com/share?url={url}&hashtags={hashtags}",
     "css_class":"tw"
 }, {
     "label":"Google +",
@@ -669,6 +677,15 @@ CKAN_ORIGINS = [{
     "css_class":"hdx"
 }]
 #SOCIAL_ORIGINS.extend(CKAN_ORIGINS)
+
+# Setting TWITTER_CARD to True will enable Twitter Cards
+# https://dev.twitter.com/cards/getting-started
+# Be sure to replace @GeoNode with your organization or site's twitter handle.
+TWITTER_CARD = True
+TWITTER_SITE = '@GeoNode'
+TWITTER_HASHTAGS = ['geonode']
+
+OPENGRAPH_ENABLED = True
 
 # Enable Licenses User Interface
 # Regardless of selection, license field stil exists as a field in the Resourcebase model.
@@ -796,6 +813,21 @@ LEAFLET_CONFIG = {
 # option to enable/disable resource unpublishing for administrators
 RESOURCE_PUBLISHING = False
 
+# Settings for EXIF contrib app
+EXIF_ENABLED = False
+
+# Settings for NLP contrib app
+NLP_ENABLED = False
+NLP_LOCATION_THRESHOLD = 1.0
+NLP_LIBRARY_PATH = "/opt/MITIE/mitielib"
+NLP_MODEL_PATH = "/opt/MITIE/MITIE-models/english/ner_model.dat"
+
+# Settings for Slack contrib app
+SLACK_ENABLED = False
+SLACK_WEBHOOK_URLS = [
+    "https://hooks.slack.com/services/T000/B000/XX"
+]
+
 CACHES = {
     # DUMMY CACHE FOR DEVELOPMENT
     'default': {
@@ -816,6 +848,17 @@ CACHES = {
 LAYER_PREVIEW_LIBRARY = 'geoext'
 
 SERVICE_UPDATE_INTERVAL = 0
+
+SEARCH_FILTERS = {
+    'TEXT_ENABLED': True,
+    'TYPE_ENABLED': True,
+    'CATEGORIES_ENABLED': True,
+    'OWNERS_ENABLED': True,
+    'KEYWORDS_ENABLED': True,
+    'DATE_ENABLED': True,
+    'REGION_ENABLED': True,
+    'EXTENT_ENABLED': True,
+}
 
 # Queue non-blocking notifications.
 NOTIFICATION_QUEUE_ALL = False

@@ -20,6 +20,7 @@
 
 import math
 import logging
+from guardian.shortcuts import get_perms
 
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
@@ -119,6 +120,7 @@ def map_detail(request, mapid, snapshot=None, template='maps/map_detail.html'):
         'config': config,
         'resource': map_obj,
         'layers': layers,
+        'perms_list': get_perms(request.user, map_obj.get_self_resource()),
         'permissions_json': _perms_info_json(map_obj),
         "documents": get_related_documents(map_obj),
     }
@@ -194,6 +196,14 @@ def map_metadata(request, mapid, template='maps/map_metadata.html'):
             the_map.keywords.add(*new_keywords)
             the_map.category = new_category
             the_map.save()
+
+            if getattr(settings, 'SLACK_ENABLED', False):
+                try:
+                    from geonode.contrib.slack.utils import build_slack_message_map, send_slack_messages
+                    send_slack_messages(build_slack_message_map("map_edit", the_map))
+                except:
+                    print "Could not send slack message for modified map."
+
             return HttpResponseRedirect(
                 reverse(
                     'map_detail',
@@ -243,7 +253,27 @@ def map_remove(request, mapid, template='maps/map_remove.html'):
         }))
 
     elif request.method == 'POST':
-        delete_map.delay(object_id=map_obj.id)
+
+        if getattr(settings, 'SLACK_ENABLED', False):
+
+            slack_message = None
+            try:
+                from geonode.contrib.slack.utils import build_slack_message_map
+                slack_message = build_slack_message_map("map_delete", map_obj)
+            except:
+                print "Could not build slack message for delete map."
+
+            delete_map.delay(object_id=map_obj.id)
+
+            try:
+                from geonode.contrib.slack.utils import send_slack_messages
+                send_slack_messages(slack_message)
+            except:
+                print "Could not send slack message for delete map."
+
+        else:
+            delete_map.delay(object_id=map_obj.id)
+
         return HttpResponseRedirect(reverse("maps_browse"))
 
 
