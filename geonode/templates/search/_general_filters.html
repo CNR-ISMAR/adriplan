@@ -6,7 +6,7 @@
     {% verbatim %}
       <li ng-repeat="category in categories" ng-if="category.count > 0">
         <a data-value="{{ category.identifier }}" data-filter="category__identifier__in"
-         ng-click="multiple_choice_listener($event)" class="{{category.active}}">{{ category.gn_description | limitTo: 25 }}{{ category.gn_description.length > 25 ? '...' : ''}}
+         ng-click="multiple_choice_listener($event)" class="{{category.active}}" title="{{category.gn_description}}">{{ category.gn_description | limitTo: 25 }}{{ category.gn_description.length > 25 ? '...' : ''}}
           <span class="badge pull-right">{{ category.count }}</span>
         </a>
       </li>
