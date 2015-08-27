@@ -1,5 +1,10 @@
 {% load i18n %}
 
-{% trans "Your account has been approved and is now active." %}:
+{% trans "Your account has been approved and is now active." %}
 
-{% trans "You can use the login form at" %}: http://{{ current_site }}
+{% trans "To access the portal you can Sign in at the top-right of the webpage" %}: http://data.adriplan.eu
+
+{% trans "Please visit the Welcome page to start exploring the portal" %}: http://data.adriplan.eu/welcome_message/
+
+
+

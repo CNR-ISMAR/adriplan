@@ -53,6 +53,10 @@ urlpatterns = patterns('',
 
                        url(r'^contacts/$', TemplateView.as_view(template_name='contacts.html'), name='contacts'),
                        (r'^grappelli/', include('grappelli.urls')), # grappelli URLS
+                       
+                       url(r'^welcome_message/$', TemplateView.as_view(template_name='welcome_message.html'), name='welcome'),
+                       (r'^grappelli/', include('grappelli.urls')), # grappelli URLS
+                       
 
                        url(r'^admin/', include(admin.site.urls)),
                        (r'^msp/', include('msptools.urls')),
@@ -141,7 +145,7 @@ urlpatterns += patterns('',
                         (r'^featured/(?P<site>[A-Za-z0-9_\-]+)/info$', 'geonode.maps.views.featured_map_info'),
                         )
 
-if 'geonode.atlas' in settings.INSTALLED_APPS:
+if 'geonode.contrib.atlas' in settings.INSTALLED_APPS:
     urlpatterns += patterns('',
-                            (r'^atlas/', include('geonode.atlas.urls')),
+                            (r'^atlas/', include('geonode.contrib.atlas.urls')),
                             )
