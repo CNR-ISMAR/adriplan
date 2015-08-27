@@ -31,17 +31,24 @@ except:
     # there are no site local_settings to import
     pass
 
+OGC_SERVER['default']['LOCATION'] = GEOSERVER_URL
+#OGC_SERVER['default']['LOCATION'] = os.path.join(SITEURL, 'geoserver/')
+OGC_SERVER['default']['PUBLIC_LOCATION'] = os.path.join(SITEURL, 'geoserver/')
+CATALOGUE['default']['URL'] = '%scatalogue/csw' % SITEURL
+PYCSW['CONFIGURATION']['metadata:main']['provider_url'] = SITEURL
+LOCAL_GEOSERVER['source']['url'] = OGC_SERVER['default']['PUBLIC_LOCATION'] + 'wms'
+
 # Directories to search for templates
 TEMPLATE_DIRS = (
     os.path.join(SITE_ROOT, 'templates/'),
-    os.path.join(GEOSITES_ROOT, 'templates/'),
+    os.path.join(PROJECT_ROOT, 'templates/'),
     os.path.join(GEONODE_ROOT, 'templates/'),
 )
 
 # Directories which hold static files
 STATICFILES_DIRS = (
     os.path.join(SITE_ROOT, 'static/'),
-    os.path.join(GEOSITES_ROOT, 'static/'),
+    os.path.join(PROJECT_ROOT, 'static/'),
     os.path.join(GEONODE_ROOT, 'static/')
 )
 
@@ -59,7 +66,7 @@ STATIC_ROOT = os.path.join(SERVE_PATH, 'static')
 # Put media files in root
 MEDIA_ROOT = os.path.join(SERVE_PATH, 'uploaded')
 
-OGC_SERVER['default']['LOCATION'] = os.path.join(GEOSERVER_URL, 'geoserver/')
+#OGC_SERVER['default']['LOCATION'] = os.path.join(GEOSERVER_URL, 'geoserver/')
 
 
 # add datastore if defined
