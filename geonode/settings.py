@@ -237,7 +237,7 @@ GEONODE_APPS = (
 
 GEONODE_CONTRIB_APPS = (
     # GeoNode Contrib Apps
-    'geonode.contrib.atlas',
+    # 'geonode.contrib.atlas',
     # 'geonode.contrib.dynamic',
     # 'geonode.contrib.exif',
     # 'geonode.contrib.favorite',
@@ -277,9 +277,16 @@ INSTALLED_APPS = (
     'msptools.base',
     'msptools.conflict_score',
     'msptools.cumulative_impact',
+    'tools4msp',
     'request',
+    'adminactions',
+    'geonode.newsletter',
+    'geonode.documentation',
+    'south',
+    'reversion',
 
     # Third party apps
+    'analytical',
 
     # Utility
     'pagination',
@@ -643,14 +650,14 @@ MAP_BASELAYERS = [{
     "name": "naip",
     "group": "background",
     "visibility": False
-}, 
-# {    
+},
+# {
 #     "source": {"ptype": "gxp_bingsource"},
 #     "name": "AerialWithLabels",
 #     "fixed": True,
 #     "visibility": False,
 #     "group": "background"
-# }, 
+# },
 {
     "source": {"ptype": "gxp_mapboxsource"},
 }]

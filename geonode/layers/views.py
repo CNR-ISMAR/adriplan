@@ -561,13 +561,19 @@ def layer_thumbnail(request, layername):
     if request.method == 'POST':
         layer_obj = _resolve_layer(request, layername)
         try:
-            image = _render_thumbnail(request.body)
+            # TODO: move in contrib.atlas
+            # create full thumbnail
+            image = _render_thumbnail(request.body, None, None)
+            if not image:
+                return
+            filename = "full-layer-%s-thumb.png" % layer_obj.uuid
+            layer_obj.save_thumbnail(filename, image)
 
+            image = _render_thumbnail(request.body, 240, 180)
             if not image:
                 return
             filename = "layer-%s-thumb.png" % layer_obj.uuid
             layer_obj.save_thumbnail(filename, image)
-
             return HttpResponse('Thumbnail saved')
         except:
             return HttpResponse(

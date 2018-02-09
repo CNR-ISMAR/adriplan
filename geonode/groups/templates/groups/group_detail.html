@@ -49,10 +49,15 @@
     <div class="row">
       <div class="col-md-12">
         <h3>{% trans "Members" %}</h3>
+        {% if object.access == "private" and not is_member %}
+            {% trans "Private group." %}
+        {% else %}
         {% include 'search/_pagination.html' %}
          <div class="tab-content paginate paginate-auto" id="search-content">
         {% include 'people/_profile_list_item.html' %}
-        </div> 
+        </div>
+        {% endif %}
+
       </div>
     </div>
   </div>
@@ -89,11 +94,15 @@
       </li>
       <li class="list-group-item">
         <h4>{% trans "Managers" %}</h4>
+        {% if object.access == "private" and not is_member %}
+            {% trans "Private group." %}
+        {% else %}
         {% for manager in object.get_managers %}
         {% with manager as profile %}
           {% include "people/_profile_about_item.html" %}
         {% endwith %}
         {% endfor %}
+        {% endif %}
       </li>
     </ul>
   </div>
@@ -108,4 +117,3 @@
   {% include 'search/search_scripts.html' %}
   {% endwith %}
 {% endblock extra_script %}
-

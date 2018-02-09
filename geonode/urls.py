@@ -48,18 +48,21 @@ sitemaps = {
 
 urlpatterns = patterns('',
                        # adriplan
-                       url(r'^about_services/$', TemplateView.as_view(template_name='about_services.html'), name='about_services'),
+                       url(r'^network/$', TemplateView.as_view(template_name='about_services.html'), name='about_services'),
                        (r'^grappelli/', include('grappelli.urls')), # grappelli URLS
+
+                       url(r'^about_services_2/$', TemplateView.as_view(template_name='about_services_2.html'), name='about_services_2'),
 
                        url(r'^contacts/$', TemplateView.as_view(template_name='contacts.html'), name='contacts'),
                        (r'^grappelli/', include('grappelli.urls')), # grappelli URLS
-                       
+
                        url(r'^welcome_message/$', TemplateView.as_view(template_name='welcome_message.html'), name='welcome'),
                        (r'^grappelli/', include('grappelli.urls')), # grappelli URLS
-                       
+
 
                        url(r'^admin/', include(admin.site.urls)),
                        (r'^msp/', include('msptools.urls')),
+                       (r'^tools4msp/', include('tools4msp.urls')),
                        (r'^adminactions/', include('adminactions.urls')),
 
                        # Static pages
@@ -67,6 +70,9 @@ urlpatterns = patterns('',
                        url(r'^help/$', TemplateView.as_view(template_name='help.html'), name='help'),
                        url(r'^developer/$', TemplateView.as_view(template_name='developer.html'), name='developer'),
                        url(r'^about/$', TemplateView.as_view(template_name='about.html'), name='about'),
+                       url(r'^team/$', TemplateView.as_view(template_name='team.html'), name='team'),
+                       url(r'^publications/$', TemplateView.as_view(template_name='publications.html'), name='publications'),
+                       url(r'^projects/$', TemplateView.as_view(template_name='projects.html'), name='projects'),
 
                        # Layer views
                        (r'^layers/', include('geonode.layers.urls')),
@@ -148,4 +154,14 @@ urlpatterns += patterns('',
 if 'geonode.contrib.atlas' in settings.INSTALLED_APPS:
     urlpatterns += patterns('',
                             (r'^atlas/', include('geonode.contrib.atlas.urls')),
+                            )
+
+if 'geonode.newsletter' in settings.INSTALLED_APPS:
+    urlpatterns += patterns('',
+                            (r'^newsletter/', include('geonode.newsletter.urls')),
+                            )
+
+if 'geonode.newsletter' in settings.INSTALLED_APPS:
+    urlpatterns += patterns('',
+                            (r'^documentation/', include('geonode.documentation.urls')),
                             )

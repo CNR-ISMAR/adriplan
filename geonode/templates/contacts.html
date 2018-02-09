@@ -5,22 +5,22 @@
 
 {% block body_outer %}
 <div class="page-header">
+  <h2>{% trans "Newsletter" %}</h2>
+</div>
+
+<p class="lead">The Tools4MSP team has recently activated a <strong>Newsletter</strong> service for MSP professionals, decision/policy makers, fellows and passionates.</p>
+<p class="lead">Here you can access the <a href="{% url 'newsletter-list' %}">archive of our Newsletter</a>.</p>
+<p class="lead">If you want to receive our Newsletter you can subscribe here:</p>
+
+<form style="border:1px solid #ccc;padding:3px;text-align:center;" action="https://tinyletter.com/Tools4MSP" method="post" target="popupwindow" onsubmit="window.open('https://tinyletter.com/Tools4MSP', 'popupwindow', 'scrollbars=yes,width=800,height=600');return true"><p><label for="tlemail">Enter your email address</label></p><p><input type="text" style="width:140px" name="email" id="tlemail" /></p><input type="hidden" value="1" name="embed"/><input type="submit" value="Subscribe" /><p><a href="https://tinyletter.com" target="_blank">powered by TinyLetter</a></p></form>
+      
+
+<div class="page-header">
   <h2>{% trans "Contacts" %}</h2>
 </div>
-<p class="lead">The<strong> ADRIPLAN Data Portal</strong> is the access point for all data collected in the <a target="_blank"  href="http://adriplan.eu/">ADRIPLAN project</a>. It is a joint effort by all partners, coordinated by <a target="_blank"  href="http://www.ismar.cnr.it/">CNR-ISMAR</a>  </p>
 
-<div> For general questions please contact the <a target="_blank"  href="http://adriplan.eu/index.php/project/work-packages/wp2-data-information-management">WP2 - Data and Information Management</a>  Lead contact person:
- <address>
-   <strong>Alessandro Sarretta</strong><br>
-    Email: alessandro.sarretta@ismar.cnr.it<br>
- </address>
-</div>
-<div> For technical questions contact the Data Portal Administrator:
- <address>
-   <strong>Stefano Menegon</strong><br>
-   Email: stefano.menegon@ve.ismar.cnr.it<br>
- </address>
-</div>
+<p class="lead"> The <strong>Tools4MSP Team</strong> is responsible for the development and maintenance of the ADRIPLAN Data Portal.<br/>
+For more information, suggestions and comments you can contact the team at <a href="mailto:tools4msp@ismar.cnr.it">tools4msp@ismar.cnr.it</a>.</p>
 
 
 

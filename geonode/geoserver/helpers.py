@@ -1628,11 +1628,15 @@ _esri_types = {
     "esriFieldTypeXML": "xsd:anyType"}
 
 
-def _render_thumbnail(req_body):
+def _render_thumbnail(req_body, width, height):
     spec = _fixup_ows_url(req_body)
     url = "%srest/printng/render.png" % ogc_server_settings.LOCATION
     hostname = urlparse(settings.SITEURL).hostname
-    params = dict(width=240, height=180, auth="%s,%s,%s" % (hostname, _user, _password))
+    params = dict(auth="%s,%s,%s" % (hostname, _user, _password))
+    if width:
+        params['width'] = width
+    if height:
+        params['height'] = height
     url = url + "?" + urllib.urlencode(params)
 
     # @todo annoying but not critical
@@ -1658,6 +1662,10 @@ def _render_thumbnail(req_body):
 
 
 def _fixup_ows_url(thumb_spec):
+    # l'url di stampa contiene l'autenticazione (auth) ad data.adriplan.eu
+    # http://localhost:8080/geoserver/rest/printng/render.png?width=240&auth=data.adriplan.eu%2Cgeoadmin%2Carc123geonode&height=180
+    # quindi non bisogna sostituire l'url pubblico con l'url privato
+    return thumb_spec
     # @HACK - for whatever reason, a map's maplayers ows_url contains only /geoserver/wms
     # so rendering of thumbnails fails - replace those uri's with full geoserver URL
     import re

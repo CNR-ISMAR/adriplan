@@ -5,17 +5,40 @@
 
 {% block body_outer %}
 <div class="page-header">
-  <h2>{% trans "About GeoNode" %}</h2>
+  <h2>{% trans "What is the ADRIPLAN Portal?" %}</h2>
 </div>
-<p class="lead">{% trans "About GeoNode." %}</p>
-<p>
-GeoNode is a geospatial content management system, a platform for the management and publication of geospatial data. It brings together mature and stable open-source software projects under a consistent and easy-to-use interface allowing non-specialized users to share data and create interactive maps.
-</p>
-<p>
-Data management tools built into GeoNode allow for integrated creation of data, metadata, and map visualizations. Each dataset in the system can be shared publicly or restricted to allow access to only specific users. Social features like user profiles and commenting and rating systems allow for the development of communities around each platform to facilitate the use, management, and quality control of the data the GeoNode instance contains.
-</p>
-<p>
-It is also designed to be a flexible platform that software developers can extend, modify or integrate against to meet requirements in their own applications.
-</p>
+<p>The <a href="http://data.adriplan.eu/">ADRIPLAN Portal</a> was developed during the ADRIPLAN (ADRiatic Ionian maritime spatial PLANning) project, a project co-funded by the European Commission – DG Maritime Affairs and Fisheries (DG MARE) under the theme “Maritime Spatial Planning (MSP) in the Mediterranean sea and/or the Black sea“ (Grant Agreement n. MARE/2012/25 [SI2.666717]). The Portal was established by the <a href="http://www.ismar.cnr.it/">Italian National Research Council - Institute of Marine Sciences (CNR-ISMAR)</a>, coordinator of the project, with inputs from all project partners. Following the conclusion of the project, the Portal is maintained and further developed under the project <a href="www.ritmare.it/">RITMARE</a> (IT Flagship Project on marine and maritime research). 
+The portal is an integrated platform which aims to support the MSP process in the Adriatic-Ionian region. The portal is developed on <a href="http://geonode.org/">GeoNode</a>, an open source Geospatial Content Management System that allows users to share geospatial datasets and maps.
+ADRIPLAN collaborates with other projects to integrate and make data available from their portals. The creation and maintenance of this network of collaborations allows the capitalization of existing multiple efforts and improves the availability of spatial dataset for users interested in MSP-related information.<p/>
+<p class="lead">{% trans "Features & Tools" %}</p>
+<p> <strong style="font-size:120%;">Layer categories & maps.</strong></p>
+<p>The following <a href="http://data.adriplan.eu/layers/?limit=20&offset=0">7 layer categories</a> and <a href="http://data.adriplan.eu/maps/?limit=20&offset=0">maps</a> can be accessed through the portal:</p>
+<ul>
+<p>Coastal defence and sand extraction: <a href="http://data.adriplan.eu/layers/?limit=20&offset=0&category__identifier__in=msp_coastDefenceSand">Layers/<a/><a href="http://data.adriplan.eu/maps/3239/view">Map</a></p>
+<p>Energy: <a href="http://data.adriplan.eu/layers/?limit=20&offset=0&category__identifier__in=msp_energy">Layers/<a/><a href="http://data.adriplan.eu/maps/175/view">Map</a></p>
+<p>Environment and ecosystem: <a href="http://data.adriplan.eu/layers/?limit=20&offset=0&category__identifier__in=msp_environmentalProtection">Layers/<a/><a href="http://data.adriplan.eu/maps/3185/view">Map</a></p> 
+<p>Environment and Ecosystems: <a href="http://data.adriplan.eu/layers/?limit=20&offset=0&category__identifier__in=msp_environmentEcosystems">Layers/<a/><a href="http://data.adriplan.eu/maps/434/view">Map</a></p>
+<p>Fisheries and Aquaculture: <a href="http://data.adriplan.eu/layers/?limit=20&offset=0&category__identifier__in=msp_fisheriesAquaculture">Layers/<a/><a href="http://data.adriplan.eu/maps/84/view">Map</a></p>
+<p>Maritime Transport and Tourism: <a href="http://data.adriplan.eu/layers/?limit=20&offset=0&category__identifier__in=msp_maritimeTransportAndTourism">Layers/<a/><a href="http://data.adriplan.eu/maps/3244/view">Map</a></p>
+<p>Miscellanea: <a href="http://data.adriplan.eu/layers/?limit=20&offset=0&category__identifier__in=msp_miscellanea">Layers</a><p/> 
+</ul>
+<p><strong style="font-size:120%;">Tools4MSP</strong><p/>
+<p>Tools4MSP are based on a geopython library designed for spatial analysis of interactions between different sea uses, pressures and potential cumulative impact of marine and coastal activities on the marine environment.
+The tool can be deployed to any research area around the globe and is extendable for scenario analysis, sea use based analysis (e.g. maritime traffic, energy, aquaculture, etc.), socio-economic assessments and application in participatory planning processes. 
+The recently implemented GeoNode-Tools4MSP plugin allows users to generate their impact scenarios by selecting analysis area, data layers involved (human activities and environmental components) and grid cell analysis.</p>
+<p>Currently Tools4MSP consists of two tools, which are now available as case studies:
+<ul>
+<p><strong style="font-size:110%;">1. Case study: The Cumulative Impact (CI) assessment.</strong></p>
+<p>In the last decade cumulative impact (CI) analysis has become an essential tool for the geospatial identification of highly impacted environmental components by marine anthropogenic uses. Since the application of Halpern’s cumulative impact analysis on global scale in 2008, 
+several studies around the world have been investigating CI patterns, such as in the Mediterranean Sea (Micheli et al., 2013), Baltic Sea (Korpinen et al., 2012) or North Sea (Andersen et al., 2013).
+<a href="http://data.adriplan.eu/tools4msp/ciinfo"> CI assessment tool</a> can be used for the geospatial analysis of CI from maritime and coastal activities on the marine environment. The tool can be used for the following tasks: Cumulative impact maps, sea use overlay analysis maps, visualization of statistical results. <a href="http://data.adriplan.eu/tools4msp/ciinfo">More information...</a></p>
+<p><a href="http://data.adriplan.eu/tools4msp/casestudy/15/config">Run the Cumulative Impact tool</a></p>
+<p><strong style="font-size:110%;">2. Case study: COEXIST Sea Use Conflict Analysis</strong></p>
+<p>The tool is based on a methodology developed for the <a href="http://www.coexistproject.eu/">FP7 COEXIST Project</a> and can be used for the following tasks: overlay analysis of sea uses, calculation of direct spatial conflict scores, development of current and future sea use scenarios and visualization of statistical results. <a href="http://data.adriplan.eu/tools4msp/coexistinfo">More information...</a></p>
+<p><a href="http://data.adriplan.eu/tools4msp/casestudy/18/config">Run the COEXIST tool</a></p>
+</ul>
+<p class="lead">{% trans "Network" %}</p>
+<p>Coming soon...</p>
 
 {% endblock %}
+

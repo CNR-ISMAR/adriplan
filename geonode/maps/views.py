@@ -862,7 +862,7 @@ def map_thumbnail(request, mapid):
     if request.method == 'POST':
         map_obj = _resolve_map(request, mapid)
         try:
-            image = _render_thumbnail(request.body)
+            image = _render_thumbnail(request.body, 240, 180)
 
             if not image:
                 return

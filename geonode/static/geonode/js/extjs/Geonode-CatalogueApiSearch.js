@@ -1,6 +1,6 @@
 /**
  * Copyright (c) 2008-2011 The Open Planning Project
- * 
+ *
  * Published under the GPL license.
  * See https://github.com/opengeo/gxp/raw/master/license.txt for the full text
  * of the license.
@@ -46,7 +46,7 @@ gxp.plugins.GeoNodeAPICatalogueSource = Ext.extend(gxp.plugins.CatalogueSource, 
 
     /** api: config[fields]
      *  ``Array`` Fields to use for the JsonReader. By default the following
-     *  fields are provided: title, abstract, bounds and URI. Optionally this 
+     *  fields are provided: title, abstract, bounds and URI. Optionally this
      *  can be overridden by applications to provide different or additional
      *  mappings.
      */
@@ -81,7 +81,7 @@ gxp.plugins.GeoNodeAPICatalogueSource = Ext.extend(gxp.plugins.CatalogueSource, 
     createStore: function() {
         this.store = new Ext.data.Store({
             proxy: new Ext.data.HttpProxy(Ext.apply({
-                url: this.url, 
+                url: this.url,
                 method: 'GET'
             }, this.proxyOptions || {})),
             reader: new Ext.data.JsonReader({
@@ -117,10 +117,10 @@ gxp.plugins.GeoNodeAPICatalogueSource = Ext.extend(gxp.plugins.CatalogueSource, 
      *
      * .. list-table::
      *     :widths: 20 80
-     * 
+     *
      *     * - ``queryString``
      *       - the search string
-     *     * - ``limit`` 
+     *     * - ``limit``
      *       - the maximum number of records to retrieve
      *     * - ``filters``
      *       - additional filters to include in the query

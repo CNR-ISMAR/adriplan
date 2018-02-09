@@ -1,7 +1,8 @@
-{% load i18n avatar_tags %}
+{% load i18n avatar_tags analytical %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    {% analytical_head_top %}
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -33,10 +34,11 @@
       </style>
     <![endif]-->
     <link rel="search" type="application/opensearchdescription+xml" href="/catalogue/opensearch" title="GeoNode Search"/>
+    {% analytical_head_bottom %}
   </head>
 
   <body class="{% block body_class %}{% endblock %}">
-
+    {% analytical_body_top %}
     {% block header %}
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container">
@@ -61,13 +63,13 @@
             <li id="nav_documents">
               <a href="{% url "document_browse" %}">{% trans "Documents" %}</a>
             </li>
-            <li id="nav_people">
+            <!--li id="nav_people">
               <a href="{% url "profile_browse" %}">{% trans "People" %}</a>
-            </li>
+            </li-->
             {% if request.user.is_superuser %}
-            <li id="nav_groups">
+            <!--li id="nav_groups">
               <a href="{% url "group_list" %}">{% trans "Groups" %}</a>
-            </li>
+            </li-->
             {% endif %}
             {% endblock %}
             {% block extra_tab %}
@@ -301,6 +303,6 @@
         };
     </script>
     <script type="text/javascript" src="{% url "lang" %}"></script>
-
+  {% analytical_body_bottom %}
   </body>
 </html>

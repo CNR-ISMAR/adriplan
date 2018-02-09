@@ -6,7 +6,8 @@ import logging
 from pyproj import transform, Proj
 from urlparse import urljoin, urlsplit
 
-from django.db import models
+# from django.db import models
+from django.contrib.gis.db import models
 from django.db.models import Q
 from django.utils.translation import ugettext_lazy as _
 from django.core.exceptions import ValidationError
@@ -132,6 +133,18 @@ class Region(MPTTModel):
         order_insertion_by = ['name']
 
 
+class DataAvailabilityArea(models.Model):
+    name = models.CharField(max_length=255)
+    geo = models.MultiPolygonField(srid=4326)
+
+    def __unicode__(self):
+        return self.name
+
+    class Meta:
+        ordering = ("name",)
+        verbose_name_plural = 'Data availability areas'
+
+
 class RestrictionCodeType(models.Model):
     """
     Metadata information about the spatial representation type.
@@ -252,6 +265,8 @@ class ResourceBase(PolymorphicModel, PermissionLevelMixin):
     keywords = TaggableManager(_('keywords'), blank=True, help_text=keywords_help_text)
     regions = models.ManyToManyField(Region, verbose_name=_('keywords region'), blank=True, null=True,
                                      help_text=regions_help_text)
+
+    data_availability_areas = models.ManyToManyField(DataAvailabilityArea, blank=True, null=True)
 
     restriction_code_type = models.ForeignKey(RestrictionCodeType, verbose_name=_('restrictions'),
                                               help_text=restriction_code_type_help_text, null=True, blank=True,
@@ -382,6 +397,9 @@ class ResourceBase(PolymorphicModel, PermissionLevelMixin):
 
     def region_name_list(self):
         return [region.name for region in self.regions.all()]
+
+    def data_availability_areas_list(self):
+        return [area.name for area in self.data_availability_areas.all()]
 
     def spatial_representation_type_string(self):
         if hasattr(self.spatial_representation_type, 'identifier'):

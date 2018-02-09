@@ -23,7 +23,7 @@ from django.contrib import admin
 from geonode.base.admin import MediaTranslationAdmin, ResourceBaseAdminForm
 from geonode.layers.models import Layer, Attribute, Style
 from geonode.layers.models import LayerFile, UploadSession
-
+from msptools.base.actions2 import download_as_csv
 
 class AttributeInline(admin.TabularInline):
     model = Attribute
@@ -53,6 +53,30 @@ class LayerAdmin(MediaTranslationAdmin):
     readonly_fields = ('uuid', 'typename', 'workspace')
     inlines = [AttributeInline]
     form = LayerAdminForm
+    # export
+    actions = [download_as_csv("Export CSV"),]
+    download_as_csv_fields = [
+        'id',
+        'owner',
+        'title',
+        'date',
+        'date_type',
+        'edition',
+        'abstract',
+        'purpose',
+        'maintenance_frequency',
+        'keyword_list',
+        'data_availability_areas_list',
+        'category',
+        'spatial_representation_type',
+        'temporal_extent_start',
+        'temporal_extent_end',
+        'supplemental_information',
+        'restriction_code_type',
+        'constraints_other',
+        'license',
+        'data_quality_statement'
+    ]
 
 
 class AttributeAdmin(admin.ModelAdmin):

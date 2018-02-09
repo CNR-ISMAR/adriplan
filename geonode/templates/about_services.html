@@ -3,11 +3,60 @@
 {% load i18n %}
 {% block title %} {% trans "OGC Services" %} — {{ block.super }}{% endblock %}
 
-{% block body_outer %}
+{% block body_outer %} 
+ <h2>{% trans "ADRIPLAN NETWORK" %}</h2>
+<p class="lead">ADRIPLAN collaborates with other projects to integrate and make available data from their portals.</p>
+<p class="lead">The creation and maintenance of this network of collaborations allows the capitalization of existing multiple efforts and improves the availability of spatial dataset for users interested in MSP-related information.</p>
+<p class="lead">All these portal use <a href="http://www.opengeospatial.org/">OGC</a> compliant web services to exchange spatial information. <a href="#internal">ADRIPLAN services</a> are described in the section at the end of this page.</p>
+ <div class="row home-facets">
+    <div class="col-md-5">
+      <p><a href="http://www.shape-ipaproject.eu/"><img src="/static/img/logo-shape.jpg" alt="SHAPE" style="height:80px;"></a></p>
+      <p>Shaping an Holistic Approach to Protect the Adriatic Environment between coast and sea</p>
+      <p><a href="http://data.adriplan.eu/layers/?limit=20&offset=0&owner__username__in=SHAPE">DATA included ADRIPLAN</a></p>
+    </div>
+    <div class="col-md-5 col-md-offset-1">
+      <p><a href="http://www.emodnet.eu/"><img src="/static/img/logo-emodnet.jpg" alt="Emodnet" style="height:80px;"></a></p>
+      <p>The European Marine Observation and Data Network</p>
+       <p><a href="http://data.adriplan.eu/layers/?limit=20&offset=0&owner__username__in=EMODnet">DATA included ADRIPLAN</a></p>
+    </div>
+  </div>
+ <div class="row home-facets">
+    <div class="col-md-5">
+      <p><a href="http://ec.europa.eu/maritimeaffairs/atlas/index_it.htm"><img src="/static/img/logo_EAS.gif" alt="EAS" style="height:80px;"></a></p>
+      <h2><a href="http://ec.europa.eu/maritimeaffairs/atlas/index_it.htm">EAS</a></h2>
+      <p>The European Atlas of the Seas</p>
+    </div>
+    <div class="col-md-5 col-md-offset-1">
+      <p><a href="http://www.eea.europa.eu/it"><img src="/static/img/logo-eea2.png" alt="EEA" style="height:80px;"></a></p>
+      <h2><a href="http://www.eea.europa.eu/it">EEA</a></h2>
+      <p>European Environment Agency</p>
+    </div>
+</div>
+
+<div class="row home-facets">
+    <div class="col-md-5">
+      <p><a href="http://www.coconet-fp7.eu/"><img src="/static/img/logo_coconet.jpg" alt="EAS" style="height:80px;"></a></p>
+      <h2><a href="http://www.coconet-fp7.eu/">COCONET</a></h2>
+      <p>Towards COast to COast NETworks</p>
+    </div>
+    
+    <div class="col-md-5 col-md-offset-1">
+      <p><a href="http://www.ritmare.it/"><img src="/static/img/logo_ritmare.png" alt="RITMARE" style="height:80px;"></a></p>
+      <h2><a href="http://www.ritmare.it/">RITMARE</a></h2>
+      <p>La ricerca italiana per il mare</p>
+    </div>
+
+</div>
+
+
+
+
+
+
 <div class="page-header">
   <h2>{% trans "ADRIPLAN Web Services" %}</h2>
 </div>
-<p class="lead">
+<p class="lead"><a name="internal"></a>
     {% blocktrans %}The ADRIPLAN portal provides <a href="http://www.opengeospatial.org/">OGC</a> compliant web services to discover, view and download geospatial datasets.
 {% endblocktrans %}</p>
 

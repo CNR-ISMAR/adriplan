@@ -7,7 +7,7 @@ from autocomplete_light.contrib.taggit_tagfield import TagField, TagWidget
 from modeltranslation.admin import TranslationAdmin
 
 from geonode.base.models import (TopicCategory, SpatialRepresentationType, Region, RestrictionCodeType,
-                                 ContactRole, Link, License)
+                                 ContactRole, Link, License, DataAvailabilityArea)
 
 
 class MediaTranslationAdmin(TranslationAdmin):
@@ -19,6 +19,12 @@ class MediaTranslationAdmin(TranslationAdmin):
             'screen': ('modeltranslation/css/tabbed_translation_fields.css',),
         }
 
+
+class DataAvailabilityAreaAdmin(admin.ModelAdmin):
+    model = DataAvailabilityArea
+    list_display = ('id', 'name', )
+    search_fields = ('name',)
+    list_editable = ('name',)
 
 class LicenseAdmin(MediaTranslationAdmin):
     model = License
@@ -100,6 +106,7 @@ class LinkAdmin(admin.ModelAdmin):
     search_fields = ('name', 'resource__title',)
     form = autocomplete_light.modelform_factory(Link)
 
+admin.site.register(DataAvailabilityArea, DataAvailabilityAreaAdmin)
 admin.site.register(TopicCategory, TopicCategoryAdmin)
 admin.site.register(Region, RegionAdmin)
 admin.site.register(SpatialRepresentationType, SpatialRepresentationTypeAdmin)
